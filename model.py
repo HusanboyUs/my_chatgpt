@@ -7,7 +7,6 @@ class NotValidInputError(ValueError):
         super().__init__(f"Your input == {value} is not valid, please check!")
     
     
-
 class ChatGPTModel:
     def __init__(self,userInput,role=None):
         self.userInput=userInput
@@ -35,20 +34,9 @@ class ChatGPTModel:
                 }
 
                 response = requests.request("POST", self.url, json=payload, headers=headers)
-                result=response.text
-                return result.json()['choices'][0]['message']['content']
+                response.text
+                return response.json()['choices'][0]['message']['content']
             else:
                 print('Debug input is not valid')   
                 return RuntimeError     
 
-class MyModel(ChatGPTModel):
-    """Inherites from Parent class ChatGPTModel and writes to my own Model"""
-    @staticmethod
-    def GetAndWrite(vla):
-        parentModel=ChatGPTModel(userInput=vla)
-        return parentModel.main()
-    def getModel():
-        ...    
-
-class DatabaseModel:
-    ...        

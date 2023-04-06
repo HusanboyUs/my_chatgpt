@@ -1,5 +1,5 @@
 
-class BotModelError:
+class BotModelError(RuntimeError):
     @staticmethod
     def error():
          ...
