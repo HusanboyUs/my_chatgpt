@@ -34,7 +34,11 @@ class ChatGPTModel:
 
                 response = requests.request("POST", self.url, json=payload, headers=headers)
                 response.text
-                return response.json()['choices'][0]['message']['content']
+                if response.json()['choices'][0]['finish_reason'] == 'stop':
+                     return 'Your text is not recognized to get answered!'
+                else:
+
+                    return response.json()['choices'][0]['message']['content']
             else:
                 print('Debug input is not valid')   
                 return RuntimeError     
