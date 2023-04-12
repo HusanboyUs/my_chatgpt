@@ -1,8 +1,7 @@
 import requests
-
+from decouple import config
 
 class NotValidInputError(ValueError):
-    """Ovewriting ValueError returns a string of wrong input with message1"""
     def __init__(self,value) -> str:
         super().__init__(f"Your input == {value} is not valid, please check!")
     
@@ -29,7 +28,7 @@ class ChatGPTModel:
                 }
                 headers = {
                     "content-type": "application/json",
-                    "X-RapidAPI-Key": "faffe7b44fmsh1507c26ab51f364p1bccb0jsn3ed911a49a3e",
+                    "X-RapidAPI-Key": "{}".format(config('API')),
                     "X-RapidAPI-Host": "openai80.p.rapidapi.com"
                 }
 
